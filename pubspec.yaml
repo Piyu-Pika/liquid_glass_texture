@@ -1,6 +1,6 @@
-name: liquid_glass_ui
+name: liquid_glass_texture
 description: "A Flutter package for iOS 26-inspired Liquid Glass UI components, including icons, bottom navigation bar, tabs, chips, and floating action button."
-version: 0.0.1-alpha.1
+version: 0.0.1
 homepage: https://github.com/Piyu-Pika/liquid_glass_ui
 
 environment:

@@ -1,4 +1,4 @@
-# Liquid Glass UI
+# Liquid Glass Texture
 
 A Flutter package providing beautiful liquid glass UI components inspired by iOS 2026 design language. Features glassmorphism effects, blur backgrounds, and smooth animations.
 
@@ -48,7 +48,7 @@ Import the package and apply the theme:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_ui/liquid_glass_ui.dart';
+import 'package:liquid_glass_texture/liquid_glass_texture.dart';
 
 void main() {
   runApp(MyApp());

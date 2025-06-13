@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/liquid_glass_effects.dart';
+import 'liquid_glass_icon.dart';
 
 class LiquidGlassBottomNavigationBar extends StatelessWidget {
   final List<BottomNavigationBarItem> items;
@@ -21,65 +22,64 @@ class LiquidGlassBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Container(
-      margin: const EdgeInsets.all(16),
-      child: LiquidGlassEffects.buildGlassContainer(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: items.asMap().entries.map((entry) {
-            final index = entry.key;
-            final item = entry.value;
-            final isSelected = index == currentIndex;
+    return SafeArea(
+      top: false,
+      child: Container(
+        margin: const EdgeInsets.all(16),
+        child: LiquidGlassEffects.buildGlassContainer(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: items.asMap().entries.map((entry) {
+              final index = entry.key;
+              final item = entry.value;
+              final isSelected = index == currentIndex;
 
-            return GestureDetector(
-              onTap: () => onTap?.call(index),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 16,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
+              return GestureDetector(
+                onTap: () => onTap?.call(index),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 18,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      LiquidGlassIcon(
+                        icon: (item.icon as Icon).icon!,
+                        size: 28,
                         color: isSelected
-                            ? Theme.of(context).primaryColor.withOpacity(0.2)
+                            ? Theme.of(context).primaryColor
+                            : Colors.grey[500],
+                        backgroundColor: isSelected
+                            ? Theme.of(context).primaryColor.withOpacity(0.10)
                             : Colors.transparent,
-                        borderRadius: BorderRadius.circular(8),
+                        isSelected: isSelected,
+                        enableGlow: true,
                       ),
-                      child: Icon(
-                        (item.icon as Icon).icon,
-                        color: isSelected
-                            ? Theme.of(context).primaryColor
-                            : Colors.grey,
+                      const SizedBox(height: 4),
+                      Text(
+                        item.label ?? '',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: isSelected
+                              ? Theme.of(context).primaryColor
+                              : Colors.grey[600],
+                          fontWeight: isSelected
+                              ? FontWeight.w700
+                              : FontWeight.normal,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      item.label ?? '',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isSelected
-                            ? Theme.of(context).primaryColor
-                            : Colors.grey,
-                        fontWeight: isSelected
-                            ? FontWeight.w600
-                            : FontWeight.normal,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
+          borderRadius: 24,
+          backgroundColor: backgroundColor,
+          isDark: isDark,
+          height: height,
         ),
-        borderRadius: 24,
-        backgroundColor: backgroundColor,
-        isDark: isDark,
-        height: height,
       ),
     );
   }

@@ -37,8 +37,10 @@ class _LiquidGlassButtonState extends State<LiquidGlassButton> {
       onTapUp: (_) => setState(() => _isPressed = false),
       onTapCancel: () => setState(() => _isPressed = false),
       onTap: widget.onPressed,
-      child: LiquidGlassEffects.buildLiquidEffect(
-        isPressed: _isPressed,
+      child: AnimatedScale(
+        scale: _isPressed ? 0.97 : 1.0,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeOut,
         child: LiquidGlassEffects.buildGlassContainer(
           child: widget.child,
           borderRadius: widget.borderRadius,
