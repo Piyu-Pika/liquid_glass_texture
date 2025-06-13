@@ -24,16 +24,13 @@ class LiquidGlassDrawer extends StatelessWidget {
       child: LiquidGlassEffects.buildGlassContainer(
         borderRadius: borderRadius,
         backgroundColor: Colors.transparent, // No color, just blur
-        padding: padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-        margin: margin,
+        padding:
+            padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (header != null) header!,
-            ...children,
-          ],
+          children: [if (header != null) header!, ...children],
         ),
       ),
     );
   }
-} 
+}
