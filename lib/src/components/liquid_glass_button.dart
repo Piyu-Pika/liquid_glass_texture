@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utils/liquid_glass_effects.dart';
 
 class LiquidGlassButton extends StatefulWidget {
   final VoidCallback? onPressed;
@@ -11,7 +10,7 @@ class LiquidGlassButton extends StatefulWidget {
   final double? height;
 
   const LiquidGlassButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.child,
     this.borderRadius = 12.0,
@@ -19,7 +18,7 @@ class LiquidGlassButton extends StatefulWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   @override
   State<LiquidGlassButton> createState() => _LiquidGlassButtonState();

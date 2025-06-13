@@ -9,12 +9,12 @@ class LiquidGlassFloatingActionButtonSpecial extends StatefulWidget {
   final Color? backgroundColor;
 
   const LiquidGlassFloatingActionButtonSpecial({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.child,
     this.size = 56.0,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   State<LiquidGlassFloatingActionButtonSpecial> createState() =>
@@ -78,7 +78,6 @@ class _LiquidGlassFloatingActionButtonSpecialState
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final effectiveBackgroundColor =
         widget.backgroundColor ?? LiquidGlassColors.primary;
 
@@ -231,11 +230,11 @@ class LiquidGlassFloatingActionButton extends StatefulWidget {
   final double size;
 
   const LiquidGlassFloatingActionButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.child,
     this.size = 56.0,
-  }) : super(key: key);
+  });
 
   @override
   State<LiquidGlassFloatingActionButton> createState() =>

@@ -9,13 +9,13 @@ class LiquidGlassChip extends StatelessWidget {
   final Color? selectedColor;
 
   const LiquidGlassChip({
-    Key? key,
+    super.key,
     required this.label,
     this.onTap,
     this.isSelected = false,
     this.backgroundColor,
     this.selectedColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

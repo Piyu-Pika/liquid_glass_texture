@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../utils/liquid_glass_effects.dart';
-import 'dart:math' as math;
 
 class LiquidGlassIcon extends StatefulWidget {
   final IconData icon;
@@ -13,7 +12,7 @@ class LiquidGlassIcon extends StatefulWidget {
   final bool enableGlow;
 
   const LiquidGlassIcon({
-    Key? key,
+    super.key,
     required this.icon,
     this.size = 24.0,
     this.color,
@@ -22,7 +21,7 @@ class LiquidGlassIcon extends StatefulWidget {
     this.borderRadius = 18.0,
     this.isSelected = false,
     this.enableGlow = true,
-  }) : super(key: key);
+  });
 
   @override
   State<LiquidGlassIcon> createState() => _LiquidGlassIconState();

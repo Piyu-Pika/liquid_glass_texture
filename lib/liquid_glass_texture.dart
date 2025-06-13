@@ -1,4 +1,4 @@
-library liquid_glass_texture;
+library;
 
 export 'src/components/liquid_glass_button.dart';
 export 'src/components/liquid_glass_floating_action_button.dart';

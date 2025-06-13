@@ -123,9 +123,9 @@ class LiquidFlowAnimation extends StatefulWidget {
   final bool isDark;
 
   const LiquidFlowAnimation({
-    Key? key,
+    super.key,
     required this.isDark,
-  }) : super(key: key);
+  });
 
   @override
   State<LiquidFlowAnimation> createState() => _LiquidFlowAnimationState();

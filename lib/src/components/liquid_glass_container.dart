@@ -12,7 +12,7 @@ class LiquidGlassContainer extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
 
   const LiquidGlassContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.borderRadius = 12.0,
     this.backgroundColor,
@@ -21,7 +21,7 @@ class LiquidGlassContainer extends StatelessWidget {
     this.width,
     this.height,
     this.margin,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

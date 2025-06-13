@@ -8,12 +8,12 @@ class LiquidGlassDialog extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
 
   const LiquidGlassDialog({
-    Key? key,
+    super.key,
     this.title,
     this.content,
     this.actions,
     this.contentPadding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

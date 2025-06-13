@@ -25,6 +25,10 @@ A Flutter package providing beautiful liquid glass UI components inspired by iOS
 - **LiquidGlassIcon** - Icons with glass container styling
 - **LiquidGlassContainer** - Base container with glass effects
 
+## Sample Ui
+
+![Liquid Glass Texture](assets/image/image.png)
+
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:

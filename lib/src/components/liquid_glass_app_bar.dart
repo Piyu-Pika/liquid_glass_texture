@@ -10,14 +10,14 @@ class LiquidGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
 
   const LiquidGlassAppBar({
-    Key? key,
+    super.key,
     this.title,
     this.actions,
     this.leading,
     this.automaticallyImplyLeading = true,
     this.elevation = 0,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -10,14 +10,14 @@ class LiquidGlassCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const LiquidGlassCard({
-    Key? key,
+    super.key,
     required this.child,
     this.margin,
     this.padding,
     this.backgroundColor,
     this.borderRadius = 16.0,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

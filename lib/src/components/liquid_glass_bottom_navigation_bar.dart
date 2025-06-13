@@ -15,7 +15,7 @@ class LiquidGlassBottomNavigationBar extends StatefulWidget {
   final Duration animationDuration;
 
   const LiquidGlassBottomNavigationBar({
-    Key? key,
+    super.key,
     required this.items,
     required this.currentIndex,
     this.onTap,
@@ -26,7 +26,7 @@ class LiquidGlassBottomNavigationBar extends StatefulWidget {
     this.showLabels = true,
     this.enableHapticFeedback = true,
     this.animationDuration = const Duration(milliseconds: 300),
-  }) : super(key: key);
+  });
 
   @override
   State<LiquidGlassBottomNavigationBar> createState() =>
@@ -276,7 +276,7 @@ class _LiquidGlassBottomNavigationBarState
                                 item: item,
                                 index: index,
                                 isSelected: isSelected,
-                                selectedColor: selectedColor!,
+                                selectedColor: selectedColor,
                                 unselectedColor: unselectedColor!,
                                 dimensions: dimensions,
                               ),
@@ -336,7 +336,7 @@ class _LiquidGlassBottomNavigationBarState
         builder: (context, child) {
           return Transform.scale(
             scale: isSelected ? _bounceAnimation.value : 1.0,
-            child: Container(
+            child: SizedBox(
               width: dimensions.itemWidth,
               height: dimensions.navHeight - 12,
               child: Stack(
@@ -410,7 +410,7 @@ class _LiquidGlassBottomNavigationBarState
                         AnimatedOpacity(
                           opacity: isSelected ? 1.0 : 0.7,
                           duration: const Duration(milliseconds: 200),
-                          child: Container(
+                          child: SizedBox(
                             width: dimensions.itemWidth - 8,
                             child: Text(
                               item.label!,

@@ -8,11 +8,11 @@ class LiquidGlassTabBar extends StatelessWidget {
   final ValueChanged<int>? onTap;
 
   const LiquidGlassTabBar({
-    Key? key,
+    super.key,
     required this.tabs,
     this.controller,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,13 +9,13 @@ class LiquidGlassDrawer extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
 
   const LiquidGlassDrawer({
-    Key? key,
+    super.key,
     this.header,
     required this.children,
     this.borderRadius = 24.0,
     this.padding,
     this.margin,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
