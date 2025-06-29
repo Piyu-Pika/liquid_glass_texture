@@ -21,7 +21,7 @@ class LiquidGlassDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.transparent, // Fully transparent
-      child: LiquidGlassEffects.buildGlassContainer(
+      child: EnhancedLiquidGlassEffects.buildPremiumGlassContainer(
         borderRadius: borderRadius,
         backgroundColor: Colors.transparent, // No color, just blur
         padding:

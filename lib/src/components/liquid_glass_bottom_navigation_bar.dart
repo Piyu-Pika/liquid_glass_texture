@@ -2,20 +2,76 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math' as math;
 
+/// A bottom navigation bar with glass-morphism effects and fluid animations.
+///
+/// This widget creates a modern, glass-like bottom navigation bar featuring:
+/// - Smooth item transitions with elastic animations
+/// - Liquid flow background effects
+/// - Glossy highlights and shadows
+/// - Customizable colors and elevation
+/// - Optional haptic feedback
+/// - Animated selection indicator
+///
+/// Example:
+/// ```dart
+/// LiquidGlassBottomNavigationBar(
+///   items: [
+///     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+///     BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+///   ],
+///   currentIndex: 0,
+///   onTap: (index) => setState(() => _currentIndex = index),
+/// )
+/// ```
 class LiquidGlassBottomNavigationBar extends StatefulWidget {
+  /// The list of items to display in the navigation bar.
   final List<BottomNavigationBarItem> items;
+  
+  /// The index of the currently selected item.
   final int currentIndex;
+  
+  /// Callback function when an item is tapped.
   final ValueChanged<int>? onTap;
+  
+  /// The background color of the navigation bar.
+  /// If null, uses a glass effect with theme-appropriate colors.
   final Color? backgroundColor;
+  
+  /// The color of the selected item.
+  /// If null, uses the primary color from the theme.
   final Color? selectedItemColor;
+  
+  /// The color of unselected items.
+  /// If null, uses a muted version of the selected color.
   final Color? unselectedItemColor;
+  
+  /// The elevation of the navigation bar.
+  /// Controls the intensity of the shadow effect.
   final double? elevation;
+  
+  /// Whether to show labels for the navigation items.
   final bool showLabels;
+  
+  /// Whether to enable haptic feedback when items are tapped.
   final bool enableHapticFeedback;
+  
+  /// The duration of animations when switching between items.
   final Duration animationDuration;
 
+  /// Creates a new [LiquidGlassBottomNavigationBar].
+  ///
+  /// The [items] parameter is required and specifies the navigation items to display.
+  /// The [currentIndex] parameter determines which item is currently selected.
+  /// The [onTap] parameter provides a callback for item selection events.
+  /// The [backgroundColor] parameter sets the background color of the bar.
+  /// The [selectedItemColor] parameter sets the color of the selected item.
+  /// The [unselectedItemColor] parameter sets the color of unselected items.
+  /// The [elevation] parameter controls the shadow intensity.
+  /// The [showLabels] parameter determines if item labels are visible.
+  /// The [enableHapticFeedback] parameter controls haptic feedback on tap.
+  /// The [animationDuration] parameter sets the duration of transition animations.
   const LiquidGlassBottomNavigationBar({
-    super.key,
+    Key? key,
     required this.items,
     required this.currentIndex,
     this.onTap,
@@ -26,7 +82,7 @@ class LiquidGlassBottomNavigationBar extends StatefulWidget {
     this.showLabels = true,
     this.enableHapticFeedback = true,
     this.animationDuration = const Duration(milliseconds: 300),
-  });
+  }) : super(key: key);
 
   @override
   State<LiquidGlassBottomNavigationBar> createState() =>
@@ -48,7 +104,7 @@ class _LiquidGlassBottomNavigationBarState
   @override
   void initState() {
     super.initState();
-
+    
     _indicatorController = AnimationController(
       duration: widget.animationDuration,
       vsync: this,
@@ -82,17 +138,15 @@ class _LiquidGlassBottomNavigationBarState
         vsync: this,
       ),
     );
-
-    _itemAnimations = _itemControllers
-        .map(
-          (controller) => Tween<double>(begin: 0.0, end: 1.0).animate(
-            CurvedAnimation(parent: controller, curve: Curves.elasticOut),
-          ),
-        )
-        .toList();
+    
+    _itemAnimations = _itemControllers.map((controller) =>
+      Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(parent: controller, curve: Curves.elasticOut),
+      ),
+    ).toList();
 
     _indicatorController.forward();
-
+    
     // Stagger item animations
     for (int i = 0; i < _itemControllers.length; i++) {
       Future.delayed(Duration(milliseconds: i * 100), () {
@@ -108,7 +162,7 @@ class _LiquidGlassBottomNavigationBarState
       _indicatorController.reset();
       _indicatorController.forward();
       _bounceController.forward().then((_) => _bounceController.reverse());
-
+      
       if (widget.enableHapticFeedback) {
         // HapticFeedback.lightImpact(); // Uncomment if you want haptic feedback
       }
@@ -136,7 +190,7 @@ class _LiquidGlassBottomNavigationBarState
 
     // Improved responsive sizing with better overflow handling
     final dimensions = _calculateDimensions(screenWidth, widget.items.length);
-
+    
     final selectedColor = widget.selectedItemColor ?? theme.primaryColor;
     final unselectedColor =
         widget.unselectedItemColor ??
@@ -186,9 +240,7 @@ class _LiquidGlassBottomNavigationBarState
                         width: dimensions.itemWidth,
                         height: dimensions.navHeight - 12,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            dimensions.borderRadius - 8,
-                          ),
+                          borderRadius: BorderRadius.circular(dimensions.borderRadius - 8),
                           gradient: RadialGradient(
                             center: Alignment.center,
                             radius: 1.5,
@@ -203,9 +255,7 @@ class _LiquidGlassBottomNavigationBarState
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              dimensions.borderRadius - 8,
-                            ),
+                            borderRadius: BorderRadius.circular(dimensions.borderRadius - 8),
                             border: Border.all(
                               color: selectedColor.withOpacity(0.3),
                               width: 0.5,
@@ -252,9 +302,7 @@ class _LiquidGlassBottomNavigationBarState
 
                 // Navigation items with proper spacing
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: dimensions.itemPadding,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: dimensions.itemPadding),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: widget.items.asMap().entries.map((entry) {
@@ -266,17 +314,14 @@ class _LiquidGlassBottomNavigationBarState
                         animation: _itemAnimations[index],
                         builder: (context, child) {
                           return Transform.translate(
-                            offset: Offset(
-                              0,
-                              20 * (1 - _itemAnimations[index].value),
-                            ),
+                            offset: Offset(0, 20 * (1 - _itemAnimations[index].value)),
                             child: Opacity(
                               opacity: _itemAnimations[index].value,
                               child: _buildNavItem(
                                 item: item,
                                 index: index,
                                 isSelected: isSelected,
-                                selectedColor: selectedColor,
+                                selectedColor: selectedColor!,
                                 unselectedColor: unselectedColor!,
                                 dimensions: dimensions,
                               ),
@@ -289,13 +334,9 @@ class _LiquidGlassBottomNavigationBarState
                 ),
 
                 // Floating particles effect for selected item
-                if (widget.currentIndex >= 0 &&
-                    widget.currentIndex < widget.items.length)
+                if (widget.currentIndex >= 0 && widget.currentIndex < widget.items.length)
                   Positioned(
-                    left:
-                        _getIndicatorPosition(dimensions) +
-                        dimensions.itemWidth / 2 -
-                        20,
+                    left: _getIndicatorPosition(dimensions) + dimensions.itemWidth / 2 - 20,
                     top: 15,
                     child: AnimatedBuilder(
                       animation: _glowAnimation,
@@ -330,13 +371,12 @@ class _LiquidGlassBottomNavigationBarState
       onTap: () => widget.onTap?.call(index),
       behavior: HitTestBehavior.opaque,
       child: AnimatedBuilder(
-        animation: isSelected
-            ? _bounceAnimation
-            : const AlwaysStoppedAnimation(1.0),
+        animation: isSelected ? _bounceAnimation : 
+                   const AlwaysStoppedAnimation(1.0),
         builder: (context, child) {
           return Transform.scale(
             scale: isSelected ? _bounceAnimation.value : 1.0,
-            child: SizedBox(
+            child: Container(
               width: dimensions.itemWidth,
               height: dimensions.navHeight - 12,
               child: Stack(
@@ -403,14 +443,12 @@ class _LiquidGlassBottomNavigationBarState
                       ),
 
                       // Label with better spacing and overflow handling
-                      if (widget.showLabels &&
-                          item.label != null &&
-                          item.label!.isNotEmpty) ...[
+                      if (widget.showLabels && item.label != null && item.label!.isNotEmpty) ...[
                         SizedBox(height: dimensions.labelSpacing),
                         AnimatedOpacity(
                           opacity: isSelected ? 1.0 : 0.7,
                           duration: const Duration(milliseconds: 200),
-                          child: SizedBox(
+                          child: Container(
                             width: dimensions.itemWidth - 8,
                             child: Text(
                               item.label!,
@@ -419,9 +457,7 @@ class _LiquidGlassBottomNavigationBarState
                                 fontWeight: isSelected
                                     ? FontWeight.w600
                                     : FontWeight.w500,
-                                color: isSelected
-                                    ? selectedColor
-                                    : unselectedColor,
+                                color: isSelected ? selectedColor : unselectedColor,
                                 letterSpacing: 0.3,
                                 height: 1.0,
                               ),
@@ -449,17 +485,14 @@ class _LiquidGlassBottomNavigationBarState
     final availableWidth = screenWidth - (baseMargin * 2);
     final minItemWidth = 60.0;
     final maxItemWidth = 120.0;
-
+    
     double itemWidth = availableWidth / itemCount;
     itemWidth = math.max(minItemWidth, math.min(maxItemWidth, itemWidth));
-
+    
     // Adjust margins if items would be too wide
     final totalItemsWidth = itemWidth * itemCount;
-    final adjustedMargin = math.max(
-      8.0,
-      (screenWidth - totalItemsWidth) / 2 - 16,
-    );
-
+    final adjustedMargin = math.max(8.0, (screenWidth - totalItemsWidth) / 2 - 16);
+    
     return NavigationDimensions(
       screenWidth: screenWidth,
       navHeight: _calculateNavHeight(screenWidth),
@@ -495,8 +528,7 @@ class _LiquidGlassBottomNavigationBarState
   }
 
   double _getIndicatorPosition(NavigationDimensions dimensions) {
-    return dimensions.itemPadding +
-        (widget.currentIndex * dimensions.itemWidth);
+    return dimensions.itemPadding + (widget.currentIndex * dimensions.itemWidth);
   }
 
   List<Color> _getGradientColors(bool isDark) {
@@ -582,18 +614,18 @@ class ParticlePainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final center = Offset(size.width / 2, size.height / 2);
-
+    
     // Draw floating particles
     for (int i = 0; i < 6; i++) {
       final angle = (i * math.pi * 2 / 6) + (progress * math.pi * 2);
       final radius = 15 + (5 * math.sin(progress * math.pi * 2));
       final particleSize = 2 + (1 * math.sin(progress * math.pi * 2 + i));
-
+      
       final offset = Offset(
         center.dx + math.cos(angle) * radius,
         center.dy + math.sin(angle) * radius,
       );
-
+      
       canvas.drawCircle(offset, particleSize, paint);
     }
   }

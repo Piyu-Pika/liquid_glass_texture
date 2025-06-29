@@ -25,7 +25,7 @@ class LiquidGlassCard extends StatelessWidget {
 
     Widget card = Container(
       margin: margin,
-      child: LiquidGlassEffects.buildGlassContainer(
+      child: EnhancedLiquidGlassEffects.buildPremiumGlassContainer(
         child: child,
         borderRadius: borderRadius,
         backgroundColor: backgroundColor,

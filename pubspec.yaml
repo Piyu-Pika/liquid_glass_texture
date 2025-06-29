@@ -1,7 +1,7 @@
 name: liquid_glass_texture
 description: "A Flutter package for iOS 26-inspired Liquid Glass UI components, including icons, bottom navigation bar, tabs, chips, and floating action button."
-version: 0.0.2
-homepage: https://github.com/Piyu-Pika/liquid_glass_ui
+version: 0.0.4
+homepage: https://github.com/Piyu-Pika/liquid_glass_texture
 
 environment:
   sdk: ^3.8.1
@@ -10,6 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # flutter_animate: ^4.2.0
+  shimmer: ^3.0.0
+  glassmorphism: ^3.0.0
+  rive: ^0.12.4
+  lottie: ^2.7.0
+  flutter_shaders: ^0.1.2
+  animated_background: ^2.0.0
+  particle_field: ^1.0.0
+  flutter_animate: ^4.5.2
 
 dev_dependencies:
   flutter_test:
@@ -23,8 +32,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets\image\image.png
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

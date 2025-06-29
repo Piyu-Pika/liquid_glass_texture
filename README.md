@@ -1,4 +1,9 @@
 # Liquid Glass Texture
+[![pub package](https://img.shields.io/pub/v/liquid_glass_texture.svg)](https://pub.dev/packages/liquid_glass_texture)
+<!-- [![popularity](https://badges.bar/liquid_glass_texture/popularity)](https://pub.dev/packages/liquid_glass_texture/score)
+[![likes](https://badges.bar/liquid_glass_texture/likes)](https://pub.dev/packages/liquid_glass_texture/score)
+[![pub points](https://badges.bar/liquid_glass_texture/pub%20points)](https://pub.dev/packages/liquid_glass_texture/score) -->
+
 
 A Flutter package providing beautiful liquid glass UI components inspired by iOS 2026 design language. Features glassmorphism effects, blur backgrounds, and smooth animations.
 

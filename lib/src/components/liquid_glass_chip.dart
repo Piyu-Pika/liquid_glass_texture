@@ -23,7 +23,7 @@ class LiquidGlassChip extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: LiquidGlassEffects.buildGlassContainer(
+      child: EnhancedLiquidGlassEffects.buildPremiumGlassContainer(
         child: label,
         borderRadius: 20,
         backgroundColor: isSelected

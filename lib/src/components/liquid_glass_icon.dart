@@ -1,16 +1,63 @@
 import 'package:flutter/material.dart';
 import '../utils/liquid_glass_effects.dart';
 
+/// A customizable icon widget with glass-morphism effects and animations.
+///
+/// This widget creates an icon with a glass-like appearance, featuring:
+/// - Customizable size and colors
+/// - Glass background effect
+/// - Optional tap interaction
+/// - Selection state with glow effect
+/// - Smooth scale animation on press
+///
+/// Example:
+/// ```dart
+/// LiquidGlassIcon(
+///   icon: Icons.favorite,
+///   size: 32.0,
+///   color: Colors.red,
+///   onTap: () => print('Icon tapped'),
+///   isSelected: true,
+/// )
+/// ```
 class LiquidGlassIcon extends StatefulWidget {
+  /// The icon to display.
   final IconData icon;
+
+  /// The size of the icon in logical pixels.
   final double size;
+
+  /// The color of the icon.
+  /// If null, defaults to white in dark mode and black87 in light mode.
   final Color? color;
+
+  /// The background color of the glass effect.
+  /// If null, uses a transparent background.
   final Color? backgroundColor;
+
+  /// Callback function when the icon is tapped.
   final VoidCallback? onTap;
+
+  /// The border radius of the glass container.
   final double borderRadius;
+
+  /// Whether the icon is in selected state.
+  /// When true, adds a glow effect if [enableGlow] is true.
   final bool isSelected;
+
+  /// Whether to enable the glow effect when [isSelected] is true.
   final bool enableGlow;
 
+  /// Creates a new [LiquidGlassIcon].
+  ///
+  /// The [icon] parameter is required and specifies which icon to display.
+  /// The [size] parameter controls the size of the icon in logical pixels.
+  /// The [color] parameter sets the icon's color.
+  /// The [backgroundColor] parameter sets the glass effect's background color.
+  /// The [onTap] parameter provides a callback for tap events.
+  /// The [borderRadius] parameter controls the roundness of the glass container.
+  /// The [isSelected] parameter determines if the icon is in selected state.
+  /// The [enableGlow] parameter controls whether the glow effect is enabled.
   const LiquidGlassIcon({
     super.key,
     required this.icon,
@@ -27,7 +74,8 @@ class LiquidGlassIcon extends StatefulWidget {
   State<LiquidGlassIcon> createState() => _LiquidGlassIconState();
 }
 
-class _LiquidGlassIconState extends State<LiquidGlassIcon> with SingleTickerProviderStateMixin {
+class _LiquidGlassIconState extends State<LiquidGlassIcon>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnim;
 
@@ -89,11 +137,7 @@ class _LiquidGlassIconState extends State<LiquidGlassIcon> with SingleTickerProv
               ),
               boxShadow: [
                 if (widget.isSelected && widget.enableGlow)
-                  BoxShadow(
-                    color: glowColor,
-                    blurRadius: 16,
-                    spreadRadius: 2,
-                  ),
+                  BoxShadow(color: glowColor, blurRadius: 16, spreadRadius: 2),
                 BoxShadow(
                   color: Colors.black.withOpacity(0.08),
                   blurRadius: 8,
@@ -102,17 +146,13 @@ class _LiquidGlassIconState extends State<LiquidGlassIcon> with SingleTickerProv
               ],
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
-            child: Icon(
-              widget.icon,
-              size: widget.size,
-              color: iconColor,
-            ),
+            child: Icon(widget.icon, size: widget.size, color: iconColor),
           ),
         );
       },
     );
 
-    iconWidget = LiquidGlassEffects.buildGlassContainer(
+    iconWidget = EnhancedLiquidGlassEffects.buildPremiumGlassContainer(
       child: iconWidget,
       borderRadius: widget.borderRadius,
       backgroundColor: widget.backgroundColor,

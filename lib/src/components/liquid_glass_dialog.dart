@@ -21,7 +21,7 @@ class LiquidGlassDialog extends StatelessWidget {
 
     return Dialog(
       backgroundColor: Colors.transparent,
-      child: LiquidGlassEffects.buildGlassContainer(
+      child: EnhancedLiquidGlassEffects.buildPremiumGlassContainer(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,

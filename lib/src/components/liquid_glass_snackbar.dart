@@ -32,7 +32,7 @@ class LiquidGlassSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Container(
-          child: LiquidGlassEffects.buildGlassContainer(
+          child: EnhancedLiquidGlassEffects.buildPremiumGlassContainer(
             child: Text(
               message,
               style: TextStyle(color: isDark ? Colors.white : Colors.black),
